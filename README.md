@@ -9,3 +9,5 @@
 ##### 3.
 #### Once the pickup and delivery times are confirmed, the logistics service sends the complete details back to the customer, including tracking information and estimated delivery time.
 ![containerizedMicroservices](https://github.com/user-attachments/assets/87aff4ed-0cef-4903-a1eb-e5c811d7eef5)
+#
+![Starting akfka and zookeeper using docker](https://github.com/user-attachments/assets/b9476c28-5bbd-4041-9c78-b5987db5c2e3)
