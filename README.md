@@ -8,3 +8,4 @@
 #### The logistics service processes the request and communicates with various delivery services (standard, express, international) to find the best available time for the pickup and delivery based on the customer’s preferences. These delivery services may need to ### ### coordinate to determine the optimal route and schedule, especially for international deliveries.
 ##### 3.
 #### Once the pickup and delivery times are confirmed, the logistics service sends the complete details back to the customer, including tracking information and estimated delivery time.
+![containerizedMicroservices](https://github.com/user-attachments/assets/87aff4ed-0cef-4903-a1eb-e5c811d7eef5)
