@@ -11,3 +11,5 @@
 ![containerizedMicroservices](https://github.com/user-attachments/assets/87aff4ed-0cef-4903-a1eb-e5c811d7eef5)
 #
 ![Starting akfka and zookeeper using docker](https://github.com/user-attachments/assets/b9476c28-5bbd-4041-9c78-b5987db5c2e3)
+#
+![docker image build using bal build --cloud-docker](https://github.com/user-attachments/assets/fbce564d-d1d6-4696-a34c-edcf4e47449d)
