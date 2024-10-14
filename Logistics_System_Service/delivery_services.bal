@@ -14,8 +14,7 @@ service /delivery on new graphql:Listener(9090) {
     //used to define a new GraphQL service
     //The GraphQL service is exposed on port 9090 and is accessible at the "/delivery" endpoint.
 
-    //Add code here 
-    //get customersresource function
+    //get customersresource function implemented
     isolated resource function get customers() returns readonly & Customer[] {
         //function returns a read-only array of Customer objects.
 
