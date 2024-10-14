@@ -39,6 +39,24 @@ service /delivery on new graphql:Listener(9090) {
 
     }
 
+        isolated remote function registerShipment(NewShipment newShipment) returns Shipment {
+        // function registers a new shipment and returns the created shipment object
+        Shipment shipment = {
+            id: uuid:createType1AsString(),
+            ...newShipment
+            //creates a new Shipment object with a generated UUID as the id 
+            //and merges the input newShipment object into it.
+
+        };
+        lock { // lock statement ensures that the shipment is added to the shipmentTable atomically.
+
+            shipmentTable.put(shipment);
+            //adds the shipment to the shipmentTable using a lock statement to ensure thread safety.
+        }
+        return shipment; //function returns the created Shipment object.
+    }
+
+
     //delivery remote function
     isolated remote function deliver(DeliveryUpdate deliveryUpdate) returns DeliveryRecord|error {
         //function updates the delivery status of a shipment and returns a DeliveryRecord object or an error.
