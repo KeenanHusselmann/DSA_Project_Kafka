@@ -56,6 +56,8 @@ isolated class DeliveryStreamGenerator {
             }
             // If records are available, the function returns a record containing the first record in the deliveryRecords array.
             return {value: new (deliveryRecords[0])};
+
+            
         }
     }
 }
