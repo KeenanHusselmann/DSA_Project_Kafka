@@ -35,3 +35,4 @@ service /delivery on new graphql:Listener(9090) {
         //calls the deliveryServiceUpdate function to update the delivery service.
         return deliveryRecord; // returns the created DeliveryRecord object.
     }
+}
