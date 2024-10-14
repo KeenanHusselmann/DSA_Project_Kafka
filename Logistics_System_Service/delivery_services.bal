@@ -15,6 +15,23 @@ service /delivery on new graphql:Listener(9090) {
     //The GraphQL service is exposed on port 9090 and is accessible at the "/delivery" endpoint.
 
 //Add code here 
+// registerCustomer remote function implemented
+    isolated remote function registerCustomer(NewCustomer newCustomer) returns Customer {
+        //function registers a new customer and returns the newly created Customer object.
+        Customer customer = {
+            id: uuid:createType1AsString(),
+            //function is used to generate a unique identifier for the customer.
+            ...newCustomer
+            //used to merge the properties of the newCustomer object into the customer object.
+        };
+        lock {
+            //adds the customer to the customerTable using a lock statement to ensure thread safety.
+            customerTable.put(customer);
+        }
+        return customer; //returns the newly created customer object
+
+    }
+
 //delivery remote function
     isolated remote function deliver(DeliveryUpdate deliveryUpdate) returns DeliveryRecord|error {
         //function updates the delivery status of a shipment and returns a DeliveryRecord object or an error.

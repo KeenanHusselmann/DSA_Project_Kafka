@@ -35,3 +35,37 @@ isolated class DeliveryStreamGenerator {
         //self.consumer holds the instance of the Kafka consumer.
         self.consumer = check new (kafka:DEFAULT_URL, consumerConfiguration); //creates a new instance of a Kafka consumer using the kafka:Consumer class
     }
+//next() Function implemented
+    public isolated function next() returns record {|Delivery value;|}? {
+        //The next function is public isolated function that returns a record containing a Delivery value. 
+        //It uses a while loop to continuously poll the Kafka consumer for new records.
+        while true {
+            DeliveryRecord[]|error deliveryRecords = self.consumer->pollPayload(20); //using kafka consumer to pull records from kafka server autonomously
+            //Polling: The function calls self.consumer->pollPayload(20) to poll the Kafka consumer for new records. 
+            //The 20 parameter specifies the timeout in milliseconds.
+
+            if deliveryRecords is error {
+                // If the polling operation returns an error, the function logs an error message and returns.
+                log:printError("Failed to retrieve data from the Kafka server", deliveryRecords, id = self.consumerGroup);
+                return;
+            }
+            if deliveryRecords.length() < 1 {
+                //If no records are available, the function logs an info message and continues to the next iteration.
+                log:printInfo(string `No delivery service available in "${self.delivery}"`, id = self.consumerGroup);
+                continue;
+            }
+            // If records are available, the function returns a record containing the first record in the deliveryRecords array.
+            return {value: new (deliveryRecords[0])};
+        }
+    }
+}
+
+//Take Away
+//This configuration is used to create a Kafka consumer that can be used to generate a stream of delivery records from a Kafka topic.
+//a function to consume records from a Kafka topic.
+
+// The DeliveryStreamGenerator class is designed to generate a stream of delivery records from a Kafka topic.
+
+// The init function initializes the class with a consumer group ID, delivery service, and Kafka consumer configuration.
+
+// The next function is designed to continuously poll the Kafka consumer for new records and return them as they become available.
