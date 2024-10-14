@@ -27,6 +27,13 @@ type NewShipment record {|
     string preferredTimeSlot;
     DeliveryService delivery;
 |};
+
+//defining immutable tables
+//Once data is added, it cannot be modified or removed. This ensures data integrity and consistency.
+//they can be accessed by multiple processes or threads without the risk of data corruption or race conditions.
+
+isolated table<Customer> key(id) customerTable = table [];
+isolated table<Shipment> key(id) shipmentTable = table [];
 //service class implemented
 service class Delivery {
 
@@ -40,3 +47,4 @@ service class Delivery {
         //initializes a new delivery record
         //self.deliveryRecord variable is assigned the passed deliveryRecord parameter.
     }
+}

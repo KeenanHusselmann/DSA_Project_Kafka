@@ -15,6 +15,13 @@ service /delivery on new graphql:Listener(9090) {
     //The GraphQL service is exposed on port 9090 and is accessible at the "/delivery" endpoint.
 
 //Add code here 
+isolated resource function get shipments() returns readonly & Shipment[]|error {
+        //function returns a read-only array of Shipment objects.
+        lock {
+            return shipmentTable.toArray().cloneReadOnly();
+        }
+    }
+
 // registerCustomer remote function implemented
     isolated remote function registerCustomer(NewCustomer newCustomer) returns Customer {
         //function registers a new customer and returns the newly created Customer object.
